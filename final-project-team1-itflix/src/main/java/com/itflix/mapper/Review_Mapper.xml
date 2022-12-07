@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper 
+namespace="com.itflix.mapper.Review_Mapper">
+	<!-- 
+	<resultMap id="ReviewResultMap"
+			   type="com.ifflix.dto.Review">
+	</resultMap>
+	 -->
+	 
+	 
+<!-- 본인 리뷰 보기 -->
+	<resultMap 	id="ReviewWithUserList"
+			   	type="com.itflix.dto.Review">
+		<result column="r_no" property="r_no" />
+		<result column="r_title" property="r_title" />
+		<result column="r_content" property="r_content" />
+		<result column="r_grade" property="r_grade" />
+		<result column="r_date" property="r_date" />
+			<collection property="userList"
+						 javaType="java.util.List"
+						 ofType="com.itflix.dto.User_Info">
+						 <result column="u_email" property="u_email"/>
+			</collection>
+			<collection property="movie" javaType="com.itflix.dto.Movie">
+				<result column="m_no" property="m_no" />
+				<result column="m_name" property="m_name" />
+				<result column="m_date" property="m_date" />
+				<collection property="category" javaType="com.itflix.dto.Category">
+					<result column="cg_name" property="cg_name"/>
+				</collection>
+			</collection>
+	</resultMap>
+
+<!-- 영화 별 최신 리뷰 *수정필요* -->
+	<resultMap 	id="ReviewWithLatest" 
+				type="com.itflix.dto.Review" >
+		<result column="r_no" property="r_no" />
+		<result column="r_title" property="r_title" />
+		<result column="r_content" property="r_content" />
+		<result column="r_grade" property="r_grade" />
+		<result column="r_date" property="r_date" />
+			<association property="movie"
+						javaType="com.itflix.dto.Movie">
+				<result column="m_no" property="m_no"/>
+			</association>
+			<collection property="user_Info"
+						javaType="com.itflix.dto.User_Info"
+						>
+						<result column="u_email" property="u_email"/>
+			</collection>
+			
+	</resultMap>
+	
+	
+<!-- 수정 -->
+	
+			   <!-- type="com.itflix.dto.Review" > -->
+	<!-- <resultMap id="ReviewWithUpdate" 
+			   type="com.itflix.dto.Review" >
+						<result column="r_no" property="r_no"/>
+						<result column="r_title" property="r_title"/>
+						<result column="r_content" property="r_content"/>
+						<result column="r_grade" property="r_grade"/>
+		<association property="movie"
+					 javaType="com.itflix.dto.Movie">
+			 <result column="m_no" property="m_no"/>
+		<collection property="userList"
+					javaType="java.util.List"
+					ofType="com.itflix.dto.User_Info">
+			<result column="u_email" property="u_email"/>
+		</collection>
+		</association>
+		
+	</resultMap>
+    -->
+   
+<!-- 추가 -->
+<!-- 
+	<resultMap 	id="ReviewWithMovieandUser" 
+				type="com.itflix.dto.Review">
+		<result column="r_no" property="r_no"/>
+		<result column="r_title" property="r_title"/>
+		<result column="r_content" property="r_content"/>
+		<result column="r_grade" property="r_grade"/>
+		<result column="r_date" property="r_date"/>
+		<result column="r_group" property="r_group"/>
+		<result column="r_step" property="r_step"/>
+		<result column="r_depth" property="r_depth"/>
+				<association property="movie"
+							 javaType="com.itflix.dto.Movie">
+							<result column="m_no" property="m_no"/>
+				</association>
+				<collection property="userList"
+							javaType="java.util.List"
+							ofType="com.itflix.dto.User_Info">
+					<result column="u_email" property="u_email"/>
+				</collection>
+	</resultMap>
+		 -->
+		
+<!-- 	 		 
+	<resultMap id="ReviewWithUserList"
+			   type="com.itflix.dto.User_Info">
+		<result column="u_email" property="u_email" />
+			<collection property="userList"
+						 javaType="java.util.List"
+						 ofType="com.itflix.dto.review">
+							 <result column="r_no" property="r_no" />
+							 <result column="r_title" property="r_title" />
+							 <result column="r_content" property="r_content" />
+							 <result column="r_grade" property="r_grade" />
+							 <result column="r_date" property="r_date" />
+			</collection>				 
+					 
+-->	 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+<!-- 			 
+			<association property="user"
+					 javaType="com.itflix.dto.Movie">		 
+			 <result column="m_no" property="m_no" />
+			 <result column="m_name" property="m_name" />
+			 <result column="m_actor" property="m_actor" />
+			 <result column="m_info" property="m_info" />
+			 <result column="m_image" property="m_image" />
+			 <result column="m_count" property="m_count" />
+			 <result column="m_date" property="m_date" />
+			 <result column="m_url" property="m_url" />
+			 <result column="m_groupno" property="m_groupno" />
+			 <result column="m_step" property="m_step" />
+			 <result column="m_depth" property="m_depth" />
+		</association>
+		<collection property="user_Info_List"
+					javaType="java.util.List"
+					ofType="com.itflix.">
+			<result column="" property=""/>
+		
+		</collection>
+-->
+</mapper>
