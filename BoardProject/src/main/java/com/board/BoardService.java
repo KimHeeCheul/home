@@ -32,4 +32,6 @@ public class BoardService {
 		return boardDao.delete(no);
 	}
 	
+	
+	
 }
