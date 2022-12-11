@@ -13,11 +13,6 @@ public class BoardController {
 	
 	public BoardController() {
 		// TODO Auto-generated constructor stub
+		System.out.println("Boardcontroller 생성자");
 	}
-	
-	@RequestMapping(value="/board_main")
-	public String Board_main() {
-		return "board_main";
-	}
-	
 }
