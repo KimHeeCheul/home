@@ -13,6 +13,6 @@ public class BoardController {
 	
 	public BoardController() {
 		// TODO Auto-generated constructor stub
-		System.out.println("Boardcontroller 생성자");
+		System.out.println("BoardController 생성자");
 	}
 }
