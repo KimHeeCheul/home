@@ -7,8 +7,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringWebBootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringWebBootApplication.class, args);
+	public static void main(String[] args) throws Exception {
+		ConfigurableApplicationContext context=SpringApplication.run(SpringWebBootApplication.class, args);
+		BoardService boardService=(BoardService)context.getBean("boardService");
+		System.out.println(boardService);
 	}
 
 }

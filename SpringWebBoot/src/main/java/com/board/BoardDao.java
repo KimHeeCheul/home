@@ -7,33 +7,32 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 @Repository
 public class BoardDao {
-		
-	public Board selectByNo(int n) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper37";
-		String password = "jdeveloper37";
+	@Autowired	
+	private DataSource dataSource;
+	
+	public Board selectByNo(int b_n) throws Exception {
 		
 		Board findBoard = null;
+		String selectSQL1="select * from board2 where b_no ="+b_n;
 		
-		String selectSQL1="select * from board2 where b_no ="+n;
-		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(selectSQL1);
 		
 		if(rs.next()) {
-			int no = rs.getInt("b_no");
-			String title = rs.getString("b_title");
-			String write = rs.getString("b_write");
-			String content = rs.getString("b_content");
-			String date = rs.getString("b_date");
+			int b_no = rs.getInt("b_no");
+			String b_title = rs.getString("b_title");
+			String b_write = rs.getString("b_write");
+			String b_content = rs.getString("b_content");
+			String b_date = rs.getString("b_date");
 			
-			findBoard = new Board(no, title, write, content, date);
+			findBoard = new Board(b_no, b_title, b_write, b_content, b_date);
 		}
 		
 		rs.close();
@@ -43,27 +42,22 @@ public class BoardDao {
 	}
 	
 	public List<Board> selectAll() throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper37";
-		String password = "jdeveloper37";
 		
 		List<Board> boardList = new ArrayList<Board>();
 		String selectSQL="select * from board2";
 		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(selectSQL);
 		
 		if(rs.next()) {
 			do {
-				int no = rs.getInt("b_no");
-				String title = rs.getString("b_title");
-				String write = rs.getString("b_write");
-				String content = rs.getString("b_content");
-				String date = rs.getString("b_date");
-				boardList.add(new Board(no,title,write,content,date));
+				int b_no = rs.getInt("b_no");
+				String b_title = rs.getString("b_title");
+				String b_write = rs.getString("b_write");
+				String b_content = rs.getString("b_content");
+				String b_date = rs.getString("b_date");
+				boardList.add(new Board(b_no, b_title, b_write, b_content, b_date));
 			}while(rs.next());
 		}else {
 			System.out.println("X");
@@ -77,15 +71,9 @@ public class BoardDao {
 	}
 	
 	public int insert(Board board)throws Exception{
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper37";
-		String password = "jdeveloper37";
+		String insertSQL="insert into board2 values('"+board.getB_no()+"','"+board.getB_title()+"','"+board.getB_write()+"','"+board.getB_content()+"','"+board.getB_date()+"')";
 		
-		String insertSQL="insert into board2 values('"+board.getNo()+"','"+board.getTitle()+"','"+board.getWrite()+"','"+board.getContent()+"','"+board.getDate()+"')";
-		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		Statement stmt = con.createStatement();
 		
 		int insertCount = stmt.executeUpdate(insertSQL);
@@ -119,15 +107,16 @@ public class BoardDao {
 	*/
 	
 	public int update(Board board) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper37";
-		String password = "jdeveloper37";
+		//String driverClass = "oracle.jdbc.OracleDriver";
+		//String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
+		//String user = "F2205JDEVELOPER#TEAM1";
+		//String password = "F2205JDEVELOPER#TEAM1";
 		
-		String updateSQL="update board2 set b_title='"+board.getTitle()+"', b_write='"+board.getWrite()+"', b_content='"+board.getContent()+"', b_date='"+board.getDate()+"' where b_no="+board.getNo();
+		String updateSQL="update board2 set b_title='"+board.getB_title()+"', b_write='"+board.getB_write()+"', b_content='"+board.getB_content()+"', b_date='"+board.getB_date()+"' where b_no="+board.getB_no();
 		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		//Class.forName(driverClass);
+		//Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		Statement stmt = con.createStatement();
 		
 		int updateCount = stmt.executeUpdate(updateSQL);
@@ -138,16 +127,10 @@ public class BoardDao {
 		return updateCount;
 	}
 	
-	public int delete(int no) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper37";
-		String password = "jdeveloper37";
+	public int delete(int b_no) throws Exception {
+		String deleteSQL="delete from board2 where b_no="+b_no;
 		
-		String deleteSQL="delete from board2 where b_no="+no;
-		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url, user, password);
+		Connection con = dataSource.getConnection();
 		Statement stmt = con.createStatement();
 		
 		int deleteCount = stmt.executeUpdate(deleteSQL);

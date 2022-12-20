@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%
 	List<Board> boardList=(List<Board>)request.getAttribute("boardList");
-
 %>    
 <!DOCTYPE html>
 <html>
@@ -19,12 +18,8 @@
 for(int i=0;i<boardList.size();i++){ 
 	Board board=boardList.get(i);
 %>
-	<li><%=board.getTitle()%></li>
+<li><a href='board_detail?b_no=<%=board.getB_no()%>'><%=board.getB_title()%>&nbsp;<%=board.getB_content() %></a></li>
 <%} %>
-
-<!-- <li>//boardList.get(index)</li> -->
-
-
 </ol>
 </body>
 </html>

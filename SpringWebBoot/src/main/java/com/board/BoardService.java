@@ -12,8 +12,8 @@ public class BoardService {
 	public BoardService() {
 		
 	}
-	public Board selectByNo(int n) throws Exception{
-	  return boardDao.selectByNo(n);
+	public Board selectByNo(int b_n) throws Exception{
+	  return boardDao.selectByNo(b_n);
 	}
 	
 	public List<Board> selectAll()throws Exception{
@@ -28,8 +28,8 @@ public class BoardService {
 		return boardDao.update(board);
 	}
 	
-	public int delete(int no) throws Exception{
-		return boardDao.delete(no);
+	public int delete(int b_no) throws Exception{
+		return boardDao.delete(b_no);
 	}
 	
 	
