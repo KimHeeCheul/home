@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.Board;
 import com.board.BoardService;
@@ -55,12 +56,30 @@ public class BoardController {
 		return "board_detail";
 	}
 	
-	//삭제 //안됨
-	@RequestMapping(value = "/board_delete_action", method = RequestMethod.POST)
-	public String boardDelete(@RequestParam(value =  "b_no" ,defaultValue = "b_no")int b_no) throws Exception{
-		System.out.println(">>board delete(v_v)");
-		int deleteCount = boardService.delete(b_no);
+	//삭제 주소창 입력시
+	@RequestMapping(value = "/board_delete_action",method = RequestMethod.GET)
+	public String boardDeleteGet(@RequestParam int b_no)throws Exception {
+		System.out.println("Get 방식");
+		int deleteCount = boardService.b_delete(b_no);
 		return "redirect:board_main";
+	}
+	
+	//삭제 //안됨...
+	@RequestMapping(value = "/board_delete_action", method = RequestMethod.POST)
+	public String boardDelete(@RequestParam int b_no, RedirectAttributes de) throws Exception{
+		System.out.println(">>board delete(v_v)");
+		String forwardPath="";
+		try {
+			System.out.println("삭제성공");
+			int deleteCount = boardService.b_delete(b_no);
+			de.addFlashAttribute("b_no",b_no);
+			forwardPath = "redirect:board_main";
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("삭제실패");
+			forwardPath = "board_main";
+		}
+		return forwardPath;
 	}
 	
 	//작성페이지
@@ -89,7 +108,7 @@ public class BoardController {
 	@RequestMapping(value = "/board_update")
 	public String boardUpdate() throws Exception{
 		System.out.println("board update!!!");
-		return "forward:/WEB-INF/views/board_update.jsp";
+		return "board_update";
 	}
 	
 	//수정
@@ -98,10 +117,11 @@ public class BoardController {
 		String forwardPath = "";
 		try {
 			int updateCount = boardService.update(board);
+			request.setAttribute("board", board);
 			forwardPath = "redirect:board_main";
 		}catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "forward:/WEB-INF/views/board_update.jsp";
+			forwardPath = "board_update";
 		}
 		return forwardPath;
 	}

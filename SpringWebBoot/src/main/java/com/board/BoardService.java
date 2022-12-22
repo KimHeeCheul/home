@@ -28,8 +28,8 @@ public class BoardService {
 		return boardDao.update(board);
 	}
 	
-	public int delete(int b_no) throws Exception{
-		return boardDao.delete(b_no);
+	public int b_delete(int b_no) throws Exception{
+		return boardDao.b_delete(b_no);
 	}
 	
 	

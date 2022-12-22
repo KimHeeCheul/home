@@ -18,23 +18,11 @@
 <h3>board_insert.jsp</h3><hr/>
 <ol>
 <form name="f" method="post">
-	<tr>
-		<td>번　호</td>
-		<td><input type="text" placeholder="숫자" name="b_no">
-		</td><br>
-		<td>제　목</td>
-		<td><input type="text" placeholder="제목" name="b_title">
-		</td><br>
-		<td>글쓴이</td>
-		<td><input type="text" placeholder="글쓴이" name="b_write">
-		</td><br>
-		<td>내　용</td>
-		<td><input type="text" placeholder="내용" name="b_content">
-		</td><br>
-		<td>날　짜</td>
-		<td><input type="text" placeholder="날짜" name="b_date">
-		</td><br>
-	</tr>
+		번　호<input type="text" placeholder="숫자" name="b_no"><br>
+		제　목<input type="text" placeholder="제목" name="b_title"><br>
+		글쓴이<input type="text" placeholder="글쓴이" name="b_write"><br>
+		내　용<input type="text" placeholder="내용" name="b_content"><br>
+		날　짜<input type="text" placeholder="날짜" name="b_date"><br>
 </form>
 <table>
 	<tr>

@@ -15,21 +15,23 @@
 <body>
 <H3>board_main.jsp</H3><hr>
 <form name="f" method="post">
-<input type="hidden" name="no" value="${board.no}" />
-<%
-for(int i=0; i<boardList.size() ; i++){
-	Board board = boardList.get(i);
-%>
+<input type="hidden"/>
 <tr>
-	<td><%=boardList.get(i) %>
-		<input type="button" value="삭제" onClick="boardDelete();">
-		<input type="button" value="수정" onClick="boardUpdate();">
-	</td><br>
+	<td>
+		<ol>
+			<%
+			for(int i=0; i<boardList.size() ; i++){
+				Board board = boardList.get(i);
+			%>
+			
+			<li><a href='board_detail?b_no=<%=board.getB_no() %>'><%=boardList.get(i) %></a></li>
+					
+			<%
+			}
+			%>
+		</ol>
+	</td>
 </tr>
-<%
-}
-%>
-</table>
 </form>
 <input type="button" value="게시판추가" onClick="boardInsert();">
 </body>

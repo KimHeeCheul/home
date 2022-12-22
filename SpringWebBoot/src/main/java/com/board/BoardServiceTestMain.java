@@ -17,7 +17,7 @@ public class BoardServiceTestMain {
 		int updateBoard = boardService.update(new Board(0, "test", "test", "test", "test"));
 		System.out.println(updateBoard);
 		
-		int deleteBoard = boardService.delete(0);
+		int deleteBoard = boardService.b_delete(15);
 		System.out.println(deleteBoard);
 		
 		List<Board> boardAll = boardService.selectAll();

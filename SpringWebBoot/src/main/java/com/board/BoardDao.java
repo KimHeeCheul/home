@@ -127,7 +127,7 @@ public class BoardDao {
 		return updateCount;
 	}
 	
-	public int delete(int b_no) throws Exception {
+	public int b_delete(int b_no) throws Exception {
 		String deleteSQL="delete from board2 where b_no="+b_no;
 		
 		Connection con = dataSource.getConnection();
