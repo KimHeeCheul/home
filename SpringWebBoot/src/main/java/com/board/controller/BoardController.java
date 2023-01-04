@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.Board;
@@ -64,7 +65,7 @@ public class BoardController {
 		return "redirect:board_main";
 	}
 	
-	//삭제 //안됨...
+	//삭제
 	@RequestMapping(value = "/board_delete_action", method = RequestMethod.POST)
 	public String boardDelete(@RequestParam int b_no, RedirectAttributes de) throws Exception{
 		System.out.println(">>board delete(v_v)");
@@ -113,11 +114,10 @@ public class BoardController {
 	
 	//수정
 	@RequestMapping(value = "/board_update_action")
-	public String boardUpdate_action(@ModelAttribute Board board,HttpServletRequest request) throws Exception {
+	public String boardUpdate_action(@ModelAttribute Board board) throws Exception {
 		String forwardPath = "";
 		try {
 			int updateCount = boardService.update(board);
-			request.setAttribute("board", board);
 			forwardPath = "redirect:board_main";
 		}catch (Exception e) {
 			e.printStackTrace();
