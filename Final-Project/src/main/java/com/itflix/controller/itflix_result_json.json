@@ -1,0 +1,36 @@
+{
+	"code":1,
+	"msg":"메세지",
+	"data":[
+				{
+					"m_no":"1",
+					"m_name":"김경가",
+					"m_actor":"박수빈",
+					"m_info":"설명...",
+					"m_image":"x.jpg",
+					"m_count":1,
+					"category":{
+						"cg_no":1,
+						"cg_name":"액션",
+						"movieList":[
+						]
+					},
+					"reviewList":[]
+				},
+				{
+					"m_no":"2",
+					"m_name":"김경국",
+					"m_actor":"박미빈",
+					"m_info":"설명1...",
+					"m_image":"y.jpg",
+					"m_count":2,
+					"category":{
+						"cg_no":5,
+						"cg_name":"코메디",
+						"movieList":[
+						]
+					},
+					"reviewList":[]
+				}
+		]
+}

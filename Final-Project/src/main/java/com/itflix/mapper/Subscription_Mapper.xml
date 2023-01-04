@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper 
+namespace="com.itflix.mapper.Subscription_Mapper">
+<resultMap  id="SubscriptionResultMap"
+			type="com.itflix.dto.Subscription" >
+		<result column="s_no" property="s_no" />
+		<result column="s_start" property="s_start" />
+		<result column="s_end" property="s_end" />
+		<result column="s_cardName" property="s_cardName" />
+		<association property="ticket" 
+					 javaType="com.itflix.dto.Ticket"  >
+					 <result column="t_no"  property="t_no"/>
+		</association>
+		<association property="user_Info" 
+					 javaType="com.itflix.dto.User_Info"  >
+					 <result column="u_email"  property="u_email"/>
+		</association>		
+</resultMap>
+<!-- 
+<resultMap  id="SubscriptionWithUpdate"
+			type="com.itflix.dto.Subscription" >
+		<result column="s_no" property="s_no" />
+		<result column="s_start" property="s_start" />
+		<result column="s_end" property="s_end" />
+		<result column="s_cardName" property="s_cardName" />
+		<association property="ticket" 
+					 javaType="com.itflix.dto.Ticket"  >
+					 <result column="t_no"  property="t_no"/>
+		</association>
+		<association property="user_Info" 
+					 javaType="com.itflix.dto.User_Info"  >
+					 <result column="u_email"  property="u_email"/>
+		</association>		
+</resultMap>
+ -->	
+<resultMap  id="SubscriptionWithUpdate"
+			type="com.itflix.dto.Subscription" >
+		<result column="s_start" property="s_start" />
+		<result column="s_end" property="s_end" />
+		<result column="s_cardName" property="s_cardName" />
+		<result column="s_cardNumber" property="s_cardNumber" />
+		<association property="ticket" 
+					 javaType="com.itflix.dto.Ticket"  >
+					 <result column="t_no"  property="t_no"/>
+		</association>
+		<association property="user_Info" 
+					 javaType="com.itflix.dto.User_Info"  >
+					 <result column="u_email" property="u_email"/>
+		</association>		
+</resultMap>
+ 	
+<resultMap id="SubscriptionWithTicket"
+		   type="com.itflix.dto.Subscription" >
+		   <result column="s_end" property="s_end" />
+		   <association property="ticket" 
+		   				javaType="com.itflix.dto.Ticket">
+		   				<result column="t_no" property="t_no"/>
+		   </association>
+		   <!-- 
+		   <association property="user_Info" 
+		   				javaType="com.itflix.dto.User_Info">
+		   				<result column="u_email" property="u_email"/>
+		   </association>
+		    -->
+</resultMap>
+ 	
+</mapper>

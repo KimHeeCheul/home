@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itflix.mapper.Jjim_Mapper">
+
+	<resultMap type="com.itflix.dto.Jjim" id="jjimListTest4">
+		<collection property="userList" javaType="java.util.List"
+			ofType="com.itflix.dto.User_Info">
+			<result column="u_email" property="u_email" />
+		</collection>
+		<collection property="movieList" javaType="java.util.List"
+			ofType="com.itflix.dto.Movie">
+			<result column="m_no" property="m_no" />
+			<result column="m_name" property="m_name" />
+			<result column="m_image" property="m_image" />
+			<result column="m_date" property="m_date" />
+			<result column="m_count" property="m_count" />
+			<association property="category"
+				javaType="com.itflix.dto.Category">
+				<result column="cg_no" property="cg_no" />
+			</association>
+		</collection>
+	</resultMap>
+
+
+	<resultMap type="com.itflix.dto.Jjim" id="Test">
+		<collection property="userList" javaType="java.util.List"
+			ofType="com.itflix.dto.User_Info">
+			<result column="u_email" property="u_email" />
+		</collection>
+		<collection property="movieList" javaType="java.util.List"
+			ofType="com.itflix.dto.Movie">
+			<result column="m_no" property="m_no" />
+			<result column="m_name" property="m_name" />
+			<result column="m_image" property="m_image" />
+			<result column="m_date" property="m_date" />
+			<result column="m_count" property="m_count" />
+			<association property="category"
+				javaType="com.itflix.dto.Category">
+				<result column="cg_no" property="cg_no" />
+				<result column="cg_name" property="cg_name" />
+			</association>
+			<collection property="reviewList"
+				javaType="java.util.List" ofType="com.itflix.dto.Review">
+				<result column="r_grade" property="r_grade" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<!--유저 이름에 찜한 영화 존재 여부 확인   -->
+	<resultMap id="jjimUserResult" type="com.itflix.dto.Jjim">
+		<collection property="userList" javaType="java.util.List" ofType="com.itflix.dto.User_Info">
+			<result column="u_email" property="u_email"/>
+			<result column="u_name" property="u_name"/>
+		</collection>
+		<collection property="movieList" javaType="java.util.List" ofType="com.itflix.dto.Movie">
+			<result column="m_no" property="m_no"/>
+		</collection>
+	</resultMap>
+
+</mapper>
